@@ -1,12 +1,9 @@
 ﻿@page "/"
 @inject AuthenticationStateProvider AuthProvider
 
-@*<h1>Hello, @HttpContext.HttpContext.User.FindFirst("name").Value!</h1>*@
 <h1>Hello, @_userName!</h1>
 
 Welcome to your new app.
-
-<SurveyPrompt Title="How is Blazor working for you?" />
 
 @code
 {

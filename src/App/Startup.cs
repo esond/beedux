@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Meeteor.App.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
@@ -27,7 +26,6 @@ namespace Meeteor.App
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {
