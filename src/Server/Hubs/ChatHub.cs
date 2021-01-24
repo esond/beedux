@@ -7,6 +7,7 @@ namespace Meeteor.Server.Hubs
     [Authorize]
     public class ChatHub : Hub
     {
+        [HubMethodName("send")]
         public async Task SendMessage(string message)
         {
             var userId = Context.UserIdentifier;
