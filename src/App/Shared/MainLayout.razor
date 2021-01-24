@@ -1,23 +1,17 @@
 ﻿@inherits LayoutComponentBase
-@attribute [Authorize]
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
 
-<AuthorizeView>
-    <Authorized>
-        <div class="sidebar">
-            <NavMenu/>
+    <div class="main">
+        <div class="top-row px-4">
+            <AccessControl />
+            <a href="https://docs.microsoft.com/en-us/aspnet/" target="_blank">About</a>
         </div>
 
-        <div class="main">
-            <div class="top-row px-4">
-                <AccessControl/>
-            </div>
-
-            <div class="content px-4">
-                @Body
-            </div>
+        <div class="content px-4">
+            @Body
         </div>
-    </Authorized>
-    <NotAuthorized>
-        <AccessControl/>
-    </NotAuthorized>
-</AuthorizeView>
+    </div>
+</div>
