@@ -31,6 +31,8 @@ namespace Meeteor.Server
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllers();
+
             services.AddSignalR();
             services.AddResponseCompression(opts =>
             {
@@ -40,14 +42,12 @@ namespace Meeteor.Server
 
             services.AddAuthentication(options =>
             {
-                // Identity made Cookie authentication the default.
-                // However, we want JWT Bearer Auth to be the default.
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
             .AddJwtBearer(options =>
             {
-                options.Authority = $"https://{_configuration["Auth0:Domain"]}/";
+                options.Authority = _configuration["Auth0:Authority"];
                 options.Audience = _configuration["Auth0:Audience"];
 
                 // Sending the access token in the query string is required due to
@@ -64,7 +64,7 @@ namespace Meeteor.Server
 
                         var path = context.HttpContext.Request.Path;
 
-                        if (!string.IsNullOrEmpty(accessToken) && path.StartsWithSegments("/hubs/"))
+                        if (!string.IsNullOrEmpty(accessToken) && path.StartsWithSegments("/hubs"))
                             context.Token = accessToken;
 
                         return Task.CompletedTask;
@@ -74,7 +74,7 @@ namespace Meeteor.Server
 
             services.AddAuthorization();
 
-            services.AddSingleton<IUserIdProvider, NameUserIdProvider>();
+            services.AddSingleton<IUserIdProvider, NameIdentifierUserIdProvider>();
 
             services.AddCors(options =>
             {
@@ -98,6 +98,10 @@ namespace Meeteor.Server
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseHsts();
+            }
 
             app.UseCors(CorsPolicyName);
 
@@ -109,6 +113,7 @@ namespace Meeteor.Server
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapHub<ChatHub>("hubs/chat");
+                endpoints.MapControllers();
 
                 endpoints.Map("/", async context =>
                 {

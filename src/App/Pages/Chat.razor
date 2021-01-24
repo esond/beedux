@@ -1,6 +1,8 @@
 ﻿@page "/chat"
 @using Microsoft.AspNetCore.SignalR.Client
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @inject NavigationManager NavigationManager
+@inject IAccessTokenProvider TokenProvider
 @implements IAsyncDisposable
 
 @attribute [Authorize]
@@ -31,30 +33,40 @@
 </ul>
 
 @code {
-    private HubConnection hubConnection;
-    private List<string> messages = new List<string>();
-    private string userInput;
-    private string messageInput;
+private HubConnection hubConnection;
+private List<string> messages = new List<string>();
+private string userInput;
+private string messageInput;
 
-    protected override async Task OnInitializedAsync()
-    {
-        hubConnection = new HubConnectionBuilder()
-            .WithUrl(NavigationManager.ToAbsoluteUri("https://localhost:49153/hubs/chat"))
-            .Build();
-
-        hubConnection.On<string, string>("ReceiveMessage", (user, message) =>
+protected override async Task OnInitializedAsync()
+{
+    hubConnection = new HubConnectionBuilder()
+        .WithUrl("https://localhost:49153/hubs/chat", options =>
         {
-            var encodedMsg = $"{user}: {message}";
-            messages.Add(encodedMsg);
-            StateHasChanged();
-        });
+            options.AccessTokenProvider = async () =>
+            {
+                var tokenResult = await TokenProvider.RequestAccessToken();
 
-        await hubConnection.StartAsync();
-    }
+                tokenResult.TryGetToken(out var accessToken);
+
+                return accessToken.Value;
+            };
+        })
+        .Build();
+
+    hubConnection.On<string, string>("ReceiveMessage", (user, message) =>
+    {
+        var encodedMsg = $"{user}: {message}";
+        messages.Add(encodedMsg);
+        StateHasChanged();
+    });
+
+    await hubConnection.StartAsync();
+}
 
     //todo: use auth names
     Task Send() =>
-        hubConnection.SendAsync("SendMessage", userInput, messageInput);
+        hubConnection.SendAsync("SendMessage", messageInput);
 
     public bool IsConnected =>
         hubConnection.State == HubConnectionState.Connected;
