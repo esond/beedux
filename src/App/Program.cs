@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Meeteor.App.Proxy;
+using Meeteor.App.Redux;
+using Meeteor.App.State;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,6 +25,10 @@ namespace Meeteor.App
                 builder.Configuration.Bind("Auth0", options.ProviderOptions);
                 options.ProviderOptions.ResponseType = "code";
             });
+
+            builder.Services.AddReduxStore<RootState, IAction>(new RootState(), Reducers.RootReducer);
+
+            builder.Services.AddScoped<ChatProxy>();
 
             await builder.Build().RunAsync();
         }

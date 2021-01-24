@@ -1,78 +1,54 @@
 ﻿@page "/chat"
-@using Microsoft.AspNetCore.SignalR.Client
-@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@inherits Meeteor.App.Components.StatefulComponent
 @inject NavigationManager NavigationManager
 @inject IAccessTokenProvider TokenProvider
-@implements IAsyncDisposable
+@inject ChatProxy ChatProxy
+@using Microsoft.AspNetCore.SignalR.Client
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using Meeteor.App.Proxy
+@using Meeteor.App.State
 
 @attribute [Authorize]
 
 <h1>Chat</h1>
-
-<div class="form-group">
-    <label>
-        User:
-        <input @bind="userInput" />
-    </label>
-</div>
 <div class="form-group">
     <label>
         Message:
-        <input @bind="messageInput" size="50" />
+        <input @bind="MessageInput" size="50"/>
     </label>
 </div>
-<button @onclick="Send" disabled="@(!IsConnected)">Send</button>
+<button @onclick="Send" disabled="@(!ChatProxy.IsConnected)">Send</button> @*TODO: connecting, connected, disconnected*@
 
 <hr>
 
 <ul id="messagesList">
-    @foreach (var message in messages)
+    @foreach (var message in State.ChatMessages)
     {
-        <li>@message</li>
+        <li>
+            <code>
+                @($"{message.Timestamp} | {message.User}: {message.Content}")
+            </code>
+        </li>
     }
 </ul>
 
 @code {
-private HubConnection hubConnection;
-private List<string> messages = new List<string>();
-private string userInput;
-private string messageInput;
+    private string MessageInput { get; set; }
 
-protected override async Task OnInitializedAsync()
-{
-    hubConnection = new HubConnectionBuilder()
-        .WithUrl("https://localhost:49153/hubs/chat", options =>
-        {
-            options.AccessTokenProvider = async () =>
-            {
-                var tokenResult = await TokenProvider.RequestAccessToken();
-
-                tokenResult.TryGetToken(out var accessToken);
-
-                return accessToken.Value;
-            };
-        })
-        .Build();
-
-    hubConnection.On<string, string>("ReceiveMessage", (user, message) =>
+    protected override async Task OnInitializedAsync()
     {
-        var encodedMsg = $"{user}: {message}";
-        messages.Add(encodedMsg);
-        StateHasChanged();
-    });
-
-    await hubConnection.StartAsync();
-}
-
-    //todo: use auth names
-    Task Send() =>
-        hubConnection.SendAsync("SendMessage", messageInput);
-
-    public bool IsConnected =>
-        hubConnection.State == HubConnectionState.Connected;
-
-    public async ValueTask DisposeAsync()
-    {
-        await hubConnection.DisposeAsync();
+        await ChatProxy.ConnectAsync();
     }
+
+    async Task Send()
+    {
+        await ActionCreators.Chat.Send(Store.Dispatch, ChatProxy, MessageInput);
+
+        //return hubConnection.SendAsync(Methods.Chat.SendMessage, messageInput);
+    }
+
+    //public async ValueTask DisposeAsync()
+    //{
+    //    await hubConnection.DisposeAsync();
+    //}
 }

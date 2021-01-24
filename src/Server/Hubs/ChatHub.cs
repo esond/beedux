@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
+using Meeteor.Core.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 
@@ -12,7 +14,12 @@ namespace Meeteor.Server.Hubs
         {
             var userId = Context.UserIdentifier;
 
-            await Clients.All.SendAsync("ReceiveMessage", userId, message);
+            await Clients.All.SendAsync("receive", new ChatMessage
+            {
+                User = userId!,
+                Timestamp = DateTimeOffset.UtcNow,
+                Content = message
+            });
         }
     }
 }
