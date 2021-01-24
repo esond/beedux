@@ -1,4 +1,4 @@
-﻿namespace Meeteor.App.Redux
+﻿namespace Beedux.App.Redux
 {
     public static class Location
     {

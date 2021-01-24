@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Meeteor.App.Redux
+namespace Beedux.App.Redux
 {
     public class HistoricEntry<TState, TAction>
     {

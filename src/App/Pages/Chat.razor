@@ -1,12 +1,12 @@
 ﻿@page "/chat"
-@inherits Meeteor.App.Components.StatefulComponent
+@inherits Beedux.App.Components.StatefulComponent
 @inject NavigationManager NavigationManager
 @inject IAccessTokenProvider TokenProvider
 @inject ChatProxy ChatProxy
-@using Microsoft.AspNetCore.SignalR.Client
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
-@using Meeteor.App.Proxy
-@using Meeteor.App.State
+@using Beedux.App.Proxy
+@using Beedux.App.Redux
+@using Beedux.App.State
 
 @attribute [Authorize]
 

@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Core\Meeteor.Core.csproj" />
+    <ProjectReference Include="..\Core\Beedux.Core.csproj" />
   </ItemGroup>
 
 </Project>

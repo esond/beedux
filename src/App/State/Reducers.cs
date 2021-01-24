@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using Meeteor.App.Redux;
-using Meeteor.Core.Models;
+using Beedux.App.Redux;
+using Beedux.Core.Models;
 
-namespace Meeteor.App.State
+namespace Beedux.App.State
 {
     public class Reducers
     {

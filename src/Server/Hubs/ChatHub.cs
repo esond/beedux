@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Meeteor.Core.Models;
+using Beedux.Core.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 
-namespace Meeteor.Server.Hubs
+namespace Beedux.Server.Hubs
 {
     [Authorize]
     public class ChatHub : Hub

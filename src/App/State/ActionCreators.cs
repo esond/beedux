@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
-using Meeteor.App.Proxy;
-using Meeteor.App.Redux;
+using Beedux.App.Proxy;
+using Beedux.App.Redux;
 
-namespace Meeteor.App.State
+namespace Beedux.App.State
 {
     public class ActionCreators
     {

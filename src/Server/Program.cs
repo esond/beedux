@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace Meeteor.Server
+namespace Beedux.Server
 {
     public class Program
     {

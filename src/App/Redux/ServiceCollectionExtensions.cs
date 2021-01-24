@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Meeteor.App.Redux
+namespace Beedux.App.Redux
 {
     public static class ServiceCollectionExtensions
     {

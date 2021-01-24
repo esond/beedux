@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Meeteor.Core.Models
+namespace Beedux.Core.Models
 {
     public class ChatMessage
     {

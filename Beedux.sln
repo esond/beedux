@@ -8,11 +8,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meeteor.Core", "src\Core\Meeteor.Core.csproj", "{8C914CFF-D08C-4DF4-8CD5-732C193B99B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Beedux.Core", "src\Core\Beedux.Core.csproj", "{8C914CFF-D08C-4DF4-8CD5-732C193B99B9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meeteor.Server", "src\Server\Meeteor.Server.csproj", "{619D6C54-CEB3-42AF-81E1-E2694E8F1EFB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Beedux.Server", "src\Server\Beedux.Server.csproj", "{619D6C54-CEB3-42AF-81E1-E2694E8F1EFB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meeteor.App", "src\App\Meeteor.App.csproj", "{3D9027E2-2B1D-45E6-A9D7-E19C43B1FAA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Beedux.App", "src\App\Beedux.App.csproj", "{3D9027E2-2B1D-45E6-A9D7-E19C43B1FAA5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

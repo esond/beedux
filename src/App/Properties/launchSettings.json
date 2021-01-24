@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "Meeteor.App": {
+    "Beedux.App": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,

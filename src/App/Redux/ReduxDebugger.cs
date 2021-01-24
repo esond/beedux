@@ -1,6 +1,6 @@
 ﻿//using Microsoft.AspNetCore.Components;
 
-//namespace Meeteor.App.Redux
+//namespace Beedux.App.Redux
 //{
 //    public class ReduxDebugger<TState, TAction> : ReduxComponent<TState, TAction>
 //    {

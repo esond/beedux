@@ -1,4 +1,4 @@
-﻿namespace Meeteor.App.Proxy
+﻿namespace Beedux.App.Proxy
 {
     public static class Methods
     {

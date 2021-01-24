@@ -7,16 +7,16 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
 WORKDIR /src
-COPY ["Meeteor.Server/Meeteor.Server.csproj", "Meeteor.Server/"]
-RUN dotnet restore "Meeteor.Server/Meeteor.Server.csproj"
+COPY ["Beedux.Server/Beedux.Server.csproj", "Beedux.Server/"]
+RUN dotnet restore "Beedux.Server/Beedux.Server.csproj"
 COPY . .
-WORKDIR "/src/Meeteor.Server"
-RUN dotnet build "Meeteor.Server.csproj" -c Release -o /app/build
+WORKDIR "/src/Beedux.Server"
+RUN dotnet build "Beedux.Server.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Meeteor.Server.csproj" -c Release -o /app/publish
+RUN dotnet publish "Beedux.Server.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Meeteor.Server.dll"]
+ENTRYPOINT ["dotnet", "Beedux.Server.dll"]

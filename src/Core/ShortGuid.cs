@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Meeteor.Core
+namespace Beedux.Core
 {
     /// <summary>
     ///     Represents a globally unique identifier (GUID) with a short(er) string value.

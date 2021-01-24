@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Meeteor.App.Proxy;
-using Meeteor.App.Redux;
-using Meeteor.App.State;
+using Beedux.App.Proxy;
+using Beedux.App.Redux;
+using Beedux.App.State;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Meeteor.App
+namespace Beedux.App
 {
     public class Program
     {
@@ -28,7 +28,10 @@ namespace Meeteor.App
 
             builder.Services.AddReduxStore<RootState, IAction>(new RootState(), Reducers.RootReducer);
 
-            builder.Services.AddScoped<ChatProxy>();
+            builder.Services.AddScoped(sp => new ChatProxy(
+                sp.GetRequiredService<IAccessTokenProvider>(),
+                "https://localhost:49157/hubs/chat",
+                sp.GetRequiredService<Store<RootState, IAction>>()));
 
             await builder.Build().RunAsync();
         }

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Meeteor.Core.Models;
+using Beedux.Core.Models;
 
-namespace Meeteor.App.State
+namespace Beedux.App.State
 {
     public class RootState
     {

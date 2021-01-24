@@ -4,7 +4,7 @@
 //using Microsoft.Extensions.DependencyInjection;
 //using Microsoft.JSInterop;
 
-//namespace Meeteor.App.Redux
+//namespace Beedux.App.Redux
 //{
 //    public class DevToolsInterop
 //    {

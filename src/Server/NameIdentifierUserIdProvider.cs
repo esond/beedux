@@ -1,7 +1,7 @@
 ﻿using System.Security.Claims;
 using Microsoft.AspNetCore.SignalR;
 
-namespace Meeteor.Server
+namespace Beedux.Server
 {
     public class NameIdentifierUserIdProvider : IUserIdProvider
     {

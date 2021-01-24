@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.Json;
 
-namespace Meeteor.App.Redux
+namespace Beedux.App.Redux
 {
     public class ReduxOptions<TState>
     {

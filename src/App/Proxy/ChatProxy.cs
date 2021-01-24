@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Meeteor.App.Redux;
-using Meeteor.App.State;
-using Meeteor.Core.Models;
+using Beedux.App.Redux;
+using Beedux.App.State;
+using Beedux.Core.Models;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.SignalR.Client;
 
-namespace Meeteor.App.Proxy
+namespace Beedux.App.Proxy
 {
     public class ChatProxy : IAsyncDisposable
     {
@@ -18,7 +18,7 @@ namespace Meeteor.App.Proxy
 
         private HubConnection _connection;
 
-        public ChatProxy(IAccessTokenProvider accessTokenProvider,
+        public ChatProxy(IAccessTokenProvider accessTokenProvider, string hubUrl,
             Store<RootState, IAction> store)
         {
             _accessTokenProvider = accessTokenProvider;
@@ -26,7 +26,7 @@ namespace Meeteor.App.Proxy
             //_dispatcher = dispatcher;
 
             _connection = new HubConnectionBuilder()
-                .WithUrl("https://localhost:49153/hubs/chat", options => //todo: config
+                .WithUrl(hubUrl, options => //todo: config
                 {
                     options.AccessTokenProvider = async () =>
                     {

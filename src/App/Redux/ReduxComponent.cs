@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Components;
 //using Microsoft.AspNetCore.Mvc.Routing;
 
-namespace Meeteor.App.Redux
+namespace Beedux.App.Redux
 {
     public class ReduxComponent<TState, TAction> : ComponentBase, IDisposable
     {

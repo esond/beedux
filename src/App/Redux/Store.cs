@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 //using Microsoft.AspNetCore.Mvc.Routing;
 
-namespace Meeteor.App.Redux
+namespace Beedux.App.Redux
 {
     public class Store<TState, TAction> : IDisposable
     {

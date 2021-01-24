@@ -1,7 +1,7 @@
-﻿using Meeteor.App.Redux;
-using Meeteor.App.State;
+﻿using Beedux.App.Redux;
+using Beedux.App.State;
 
-namespace Meeteor.App.Components
+namespace Beedux.App.Components
 {
     public class StatefulComponent : ReduxComponent<RootState, IAction>
     {
