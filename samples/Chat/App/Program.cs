@@ -4,9 +4,7 @@ using System.Threading.Tasks;
 using Beedux.Chat.App.Proxy;
 using Beedux.Chat.App.State;
 using Beedux.Core;
-using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Beedux.Chat.App
@@ -20,16 +18,9 @@ namespace Beedux.Chat.App
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-            builder.Services.AddOidcAuthentication(options =>
-            {
-                builder.Configuration.Bind("Auth0", options.ProviderOptions);
-                options.ProviderOptions.ResponseType = "code";
-            });
-
             builder.Services.AddReduxStore<RootState, IAction>(new RootState(), Reducers.RootReducer);
 
             builder.Services.AddScoped(sp => new ChatProxy(
-                sp.GetRequiredService<IAccessTokenProvider>(),
                 "https://localhost:5011/hubs/chat",
                 sp.GetRequiredService<Store<RootState, IAction>>()));
 

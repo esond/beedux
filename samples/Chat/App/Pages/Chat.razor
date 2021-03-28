@@ -1,13 +1,9 @@
 ﻿@page "/chat"
 @inherits Beedux.Chat.App.Components.StatefulComponent
 @inject NavigationManager NavigationManager
-@inject IAccessTokenProvider TokenProvider
 @inject ChatProxy ChatProxy
-@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @using Beedux.Chat.App.Proxy
 @using Beedux.Chat.App.State
-
-@attribute [Authorize]
 
 <h1>Chat</h1>
 <div class="form-group">
@@ -16,7 +12,7 @@
         <input @bind="MessageInput" size="50"/>
     </label>
 </div>
-<button @onclick="Send" disabled="@(!ChatProxy.IsConnected)">Send</button> @*TODO: connecting, connected, disconnected*@
+<button @onclick="Send" disabled="@(!ChatProxy.IsConnected)">Send</button>
 
 <hr>
 
@@ -42,12 +38,5 @@
     async Task Send()
     {
         await ActionCreators.Chat.Send(Store.Dispatch, ChatProxy, MessageInput);
-
-        //return hubConnection.SendAsync(Methods.Chat.SendMessage, messageInput);
     }
-
-    //public async ValueTask DisposeAsync()
-    //{
-    //    await hubConnection.DisposeAsync();
-    //}
 }

@@ -3,38 +3,24 @@ using System.Threading.Tasks;
 using Beedux.Chat.App.State;
 using Beedux.Chat.Core.Models;
 using Beedux.Core;
-using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.SignalR.Client;
 
 namespace Beedux.Chat.App.Proxy
 {
     public class ChatProxy : IAsyncDisposable
     {
-        private readonly IAccessTokenProvider _accessTokenProvider;
         private readonly Store<RootState, IAction> _store;
         private readonly Dispatcher<IAction> _dispatcher;
 
-        private HubConnection _connection;
+        private readonly HubConnection _connection;
 
-        public ChatProxy(IAccessTokenProvider accessTokenProvider, string hubUrl,
-            Store<RootState, IAction> store)
+        public ChatProxy(string hubUrl, Store<RootState, IAction> store)
         {
-            _accessTokenProvider = accessTokenProvider;
             _store = store;
             //_dispatcher = dispatcher;
 
             _connection = new HubConnectionBuilder()
-                .WithUrl(hubUrl, options => //todo: config
-                {
-                    options.AccessTokenProvider = async () =>
-                    {
-                        var tokenResult = await _accessTokenProvider.RequestAccessToken();
-
-                        tokenResult.TryGetToken(out var accessToken);
-
-                        return accessToken.Value;
-                    };
-                })
+                .WithUrl(hubUrl)
                 .Build();
         }
 

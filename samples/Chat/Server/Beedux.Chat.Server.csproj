@@ -6,10 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.2" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\..\src\Core\Beedux.Core.csproj" />
     <ProjectReference Include="..\Core\Beedux.Chat.Core.csproj" />
   </ItemGroup>
