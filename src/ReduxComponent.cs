@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Components;
 
 //using Microsoft.AspNetCore.Mvc.Routing;
 
-namespace Beedux.Core
+namespace Beedux
 {
     public class ReduxComponent<TState, TAction> : ComponentBase, IDisposable
     {

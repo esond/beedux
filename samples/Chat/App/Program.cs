@@ -3,7 +3,6 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Beedux.Chat.App.Proxy;
 using Beedux.Chat.App.State;
-using Beedux.Core;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 

@@ -12,7 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\Core\Beedux.Core.csproj" />
     <ProjectReference Include="..\Core\Beedux.Chat.Core.csproj" />
   </ItemGroup>
 

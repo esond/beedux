@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using Beedux.Chat.App.Proxy;
-using Beedux.Core;
 
 namespace Beedux.Chat.App.State
 {

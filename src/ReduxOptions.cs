@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.Json;
 
-namespace Beedux.Core
+namespace Beedux
 {
     public class ReduxOptions<TState>
     {

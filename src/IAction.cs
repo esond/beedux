@@ -1,4 +1,4 @@
-﻿namespace Beedux.Core
+﻿namespace Beedux
 {
     public interface IAction
     {

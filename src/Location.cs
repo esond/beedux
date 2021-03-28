@@ -1,4 +1,4 @@
-﻿namespace Beedux.Core
+﻿namespace Beedux
 {
     public static class Location
     {

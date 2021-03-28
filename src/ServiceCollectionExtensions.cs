@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Beedux.Core
+namespace Beedux
 {
     public static class ServiceCollectionExtensions
     {

@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Beedux.Chat.App.State;
 using Beedux.Chat.Core.Models;
-using Beedux.Core;
 using Microsoft.AspNetCore.SignalR.Client;
 
 namespace Beedux.Chat.App.Proxy

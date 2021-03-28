@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 //using Microsoft.AspNetCore.Mvc.Routing;
 
-namespace Beedux.Core
+namespace Beedux
 {
     public class Store<TState, TAction> : IDisposable
     {

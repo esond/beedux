@@ -1,5 +1,4 @@
 ﻿using Beedux.Chat.Core.Models;
-using Beedux.Core;
 
 namespace Beedux.Chat.App.State
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Beedux.Core
+namespace Beedux
 {
     public class HistoricEntry<TState, TAction>
     {

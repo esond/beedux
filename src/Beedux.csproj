@@ -9,4 +9,10 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.4" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <PackageId>Beedux</PackageId>
+    <Version>0.1.0</Version>
+    <PackageTags>Blazor;WebAssembly;Redux</PackageTags>
+  </PropertyGroup>
+
 </Project>
